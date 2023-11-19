@@ -1,33 +1,6 @@
 <?php
-include_once("./mysql_connect.php");
-
-$username = $password = $stmt = $result = $row = null;
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    if (empty($username) || empty($password)) {
-        echo "Please enter both username and password.";
-    } else {
-        $stmt = $conn->prepare("SELECT * FROM `felhasználó` WHERE `felhasználó név`=?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            if (password_verify($password, $row['jelszó'])) {
-                echo "Welcome " . $row['név'] . " " . $row['születési hely'] . " " . $row['szak'] . "!";
-            } else {
-                echo "Invalid username or password.";
-            }
-        } else {
-            echo "Invalid username or password.";
-        }
-        $stmt->close();
-    }
-}
+include_once("./include/functionalities/mysql_connect.php");
+include_once("./include/functionalities/login_handler.php");
 ?>
 
 <!DOCTYPE html>
@@ -36,26 +9,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+    <title>Insex page</title>
+    <link rel="stylesheet" href="./include/style/style.css">
 </head>
 
 <body>
-    <h1>Welcome ot the Neptun system</h1>
-    <h2>Login Form</h2>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
+<?php include_once("./navbar.php"); ?>
+    <div class="content">
+        <h1>Log in to use Neptun</h1>
+        <div id="login">
+            <h2>Login Form</h2>
+            <div id="login-form">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required><br>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br>
 
-        <input type="submit" value="Login">
-    </form>
-
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+            <div id="register_link">
+                <form action="./register.php" method="get">
+                    <button type="submit" class="button">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
 
 <?php
-include_once("./mysql_disconnect.php");
+include_once("./include/functionalities/mysql_disconnect.php");
 ?>

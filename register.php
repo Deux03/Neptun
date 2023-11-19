@@ -1,74 +1,74 @@
 <?php
-include_once("./mysql_connect.php");
+include_once("./include/functionalities/mysql_connect.php");
+include_once("./include/functionalities/register_handler.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
+    <title>Registration</title>
+    <link rel="stylesheet" href="./include/style/style.css">
+    
 </head>
+
 <body>
 
-<?php
-$username = $status = $major = $birthdate = $birthplace = $password = $name = $isStudent = $sql = $stmt = null;
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["felhasználó_név"];
-    $status = $_POST["státusz"] == "active" ? 1 : 0;
-    $major = $_POST["szak"];
-    $birthdate = $_POST["születési_dátum"];
-    $birthplace = $_POST["születési_hely"];
-    $password = password_hash($_POST["jelszó"], PASSWORD_DEFAULT); 
-    $name = $_POST["név"];
-    $isStudent = ($_POST["hallgató"] == "teacher") ? 1 : 0;
-    $sql = "INSERT INTO felhasználó (`felhasználó név`, `státusz`, `szak`, `születési dátum`, `jelszó`, `név`, `hallgató-e`, `születési hely`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sissssis", $username, $status, $major, $birthdate, $password, $name, $isStudent, $birthplace);
-    $stmt->execute();
-    $stmt->close();
-    echo "Registration successful!";
-}
-?>
+    <?php include_once("./navbar.php"); ?>
+    <div class="content">
+        <div id="register">
+            <h2>Registration Form</h2>
+            <div id="register-form">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <label for="felhasználó_név">Username:</label>
+                    <input type="text" class="felhasználó_név" name="felhasználó_név" maxlength="6" required><br>
 
-<h2>Registration Form</h2>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-    <label for="felhasználó_név">Username:</label>
-    <input type="text" id="felhasználó_név" name="felhasználó_név" required><br>
+                    <label for="státusz">Status:</label>
+                    <input list="status" class="státusz" name="státusz" required>
+                    <datalist class="status">
+                        <option value="active">
+                        <option value="passive">
+                    </datalist><br><br>
 
-    <label for="státusz">Status:</label>
-    <input list="status" id="státusz" name="státusz" required>
-    <datalist id="status">
-        <option value="active">
-        <option value="passiv">
-    </datalist><br><br>
+                    <label for="szak">Major:</label>
+                    <input type="text" class="szak" name="szak" maxlength="30" required><br>
 
-    <label for="szak">Major:</label>
-    <input type="text" id="szak" name="szak" required><br>
+                    <label for="születési_dátum">Birthdate:</label>
+                    <input type="date" class="születési_dátum" name="születési_dátum" required><br>
 
-    <label for="születési_dátum">Birthdate:</label>
-    <input type="date" id="születési_dátum" name="születési_dátum" required><br>
+                    <label for="születési_hely">Birthplace:</label>
+                    <input type="text" class="születési_hely" name="születési_hely" maxlength="20" required><br>
 
-    <label for="születési_hely">Birthplace:</label>
-    <input type="text" id="születési_hely" name="születési_hely" required><br>
+                    <label for="jelszó">Password:</label>
+                    <input type="password" class="jelszó" name="jelszó" maxlength="250" required><br>
+         
+                    <label for="jelszó2">Password again:</label>
+                    <input type="password" class="jelszó2" name="jelszó2" maxlength="250" required><br>
 
-    <label for="jelszó">Password:</label>
-    <input type="password" id="jelszó" name="jelszó" required><br>
+                    <label for="név">Name:</label>
+                    <input type="text" class="név" name="név" maxlength="40" required><br>
 
-    <label for="név">Name:</label>
-    <input type="text" id="név" name="név" required><br>
+                    <label for="hallgató">Role:</label>
+                    <input list="jogok" class="hallgató" name="hallgató" required>
+                    <datalist class="jogok">
+                        <option value="teacher">
+                        <option value="student">
+                    </datalist><br>
 
-    <label for="hallgató">Role:</label>
-    <input list="jogok" id="hallgató" name="hallgató" required>
-    <datalist id="jogok">
-        <option value="teacher">
-        <option value="student">
-    </datalist><br>
-
-    <input type="submit" value="Register">
-</form>
-
+                    <input type="submit" value="Register">
+                </form>
+                <?php
+                if (!empty($errorMessage)) {
+                    echo "<p class='error-message'>$errorMessage</p>";
+                }
+                ?>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
 
 <?php
-include_once("./mysql_disconnect.php");
+include_once("./include/functionalities/mysql_disconnect.php");

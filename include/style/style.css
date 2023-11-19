@@ -1,0 +1,101 @@
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-width: 610px;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: #333; 
+    overflow: auto; 
+}
+
+.navbar-leftside, .navbar-rightside {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-leftside li{
+    float: left;
+
+} .navbar-rightside li {
+    float: right;
+}
+
+.navbar-leftside a, .navbar-rightside a {
+    text-decoration: none;
+    color: #fff; 
+    padding: 15px;
+    display: inline-block;
+}
+
+.navbar-leftside a:hover, .navbar-rightside a:hover {
+    background-color: #555; /* Set your desired hover background color */
+    color: rgb(255, 251, 191);
+}
+
+.container-fluid {
+    padding-top: 0;
+}
+
+/* Clear the float to prevent issues with other elements */
+.navbar:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-table-container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: antiquewhite;
+    border: 2px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid black;
+}
+
+thead {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.sortable:hover {
+    cursor: pointer;
+    color: #ffcc00;
+}
+
+
