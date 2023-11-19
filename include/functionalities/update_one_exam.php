@@ -1,4 +1,5 @@
 <?php
+include_once("./include/db/mysql_connect.php");
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editedExam'])) {
     $id = $_POST['id'];
     $ferohely = $_POST['ferohely'];
@@ -16,4 +17,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editedExam'])) {
     }
     $stmt->close();
 }
-?>
+

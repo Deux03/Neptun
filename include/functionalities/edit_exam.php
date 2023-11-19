@@ -1,4 +1,5 @@
 <?php
+include_once("./include/db/mysql_connect.php");
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $ferohely = $_GET['ferohely'];

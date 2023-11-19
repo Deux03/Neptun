@@ -17,15 +17,14 @@ if (!(isset($_COOKIE["LoggedIn"]) && $_COOKIE["LoggedIn"] == true)) {
 <body>
     <?php include_once("./navbar.php"); ?>
     <div class="content">
-        <h1>Add the exam</h1>
-        <a href="./teachers_add_exmas.php">
-            <button type="button">Add exam</button>
-        </a>
+        <h1>Delete the exam</h1>
         <?php
+        include_once("./include/functionalities/delete_exam.php");
         if (!empty($errorMessage)) {
             echo "<p class='error-message'>$errorMessage</p>";
         }
-        include_once("./include/functionalities/get_all_exams.php") ?>
+        include_once("./include/functionalities/get_all_exams.php");
+        ?>
     </div>
 </body>
 

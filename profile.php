@@ -3,7 +3,6 @@ if(!(isset($_COOKIE["LoggedIn"]) && $_COOKIE["LoggedIn"] == true)) {
     header("Location: ./index.php");
     exit();
 } 
-include_once("./include/functionalities/mysql_connect.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,5 +29,4 @@ include_once("./include/functionalities/mysql_connect.php");
 </body>
 
 </html>
-<?php
-include_once("./include/functionalities/mysql_disconnect.php");
+<?php include_once("./include/db/mysql_disconnect.php"); ?>

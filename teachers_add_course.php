@@ -3,7 +3,7 @@ if (!(isset($_COOKIE["LoggedIn"]) && $_COOKIE["LoggedIn"] == true)) {
     header("Location: ./index.php");
     exit();
 }
-include_once("./include/functionalities/add_exam.php");
+include_once("./include/functionalities/add_course.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,22 +23,25 @@ include_once("./include/functionalities/add_exam.php");
             <label for="kód">kód:</label>
             <input type="text" class="kód" name="kód" maxlength="20" required><br>
 
-            <label for="időpont">időpont:</label>
-            <input type="datetime-local" class="időpont" name="időpont" required><br>
-
             <label for="férőhely">férőhely:</label>
             <input type="number" class="férőhely" name="férőhely" max="999" required><br>
+
+            <label for="heti_óraszám">heti óraszám:</label>
+            <input type="number" class="heti_óraszám" name="heti_óraszám" max="9" required><br>
 
             <label for="jelleg">jelleg:</label>
             <input type="text" class="jelleg" name="jelleg" maxlength="20" required><br>
 
-            <input type="submit" name="newExam" value="Submit">
+            <label for="cím">cím:</label>
+            <input type="text" class="cím" name="cím" maxlength="150" required><br>
+
+            <input type="submit" name="newCourse" value="Submit">
         </form>
         <?php
         if (!empty($errorMessage)) {
             echo "<p class='error-message'>$errorMessage</p>";
         }
-        include_once("./include/functionalities/get_all_exams.php");
+        include_once("./include/functionalities/get_all_courses.php");
         ?>
     </div>
 </body>

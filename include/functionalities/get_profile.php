@@ -1,4 +1,5 @@
 <?php
+include_once("./include/db/mysql_connect.php");
 $username = isset($_COOKIE["username"]) ? $_COOKIE["username"] : null;
 $name = isset($_COOKIE["name"]) ? $_COOKIE["name"] : null;
 $isStudent = isset($_COOKIE["isStudent"]) ? $_COOKIE["isStudent"] : null;
@@ -27,4 +28,4 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 $stmt->close();
-?>
+

@@ -1,5 +1,4 @@
 <?php
-include_once("./include/functionalities/mysql_connect.php");
 include_once("./include/functionalities/register_handler.php");
 ?>
 <!DOCTYPE html>
@@ -69,6 +68,4 @@ include_once("./include/functionalities/register_handler.php");
 </body>
 
 </html>
-
-<?php
-include_once("./include/functionalities/mysql_disconnect.php");
+<?php include_once("./include/db/mysql_disconnect.php"); ?>

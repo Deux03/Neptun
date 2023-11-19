@@ -1,4 +1,5 @@
 <?php
+include_once("./include/db/mysql_connect.php");
 session_start();
 $_SESSION = array();
 
@@ -19,4 +20,3 @@ if (session_destroy()) {
 } else {
     echo "Error destroying session";
 }
-?>

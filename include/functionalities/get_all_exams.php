@@ -1,4 +1,5 @@
 <?php
+include_once("./include/db/mysql_connect.php");
 $orderBy = isset($_GET['orderby']) ? $_GET['orderby'] : 'kód';
 $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
 $stmt = $conn->prepare("SELECT * FROM vizsga ORDER BY `$orderBy` $order;");
@@ -24,10 +25,10 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["férőhely"] . "</td>";
         echo "<td>" . $row["jelleg"] . "</td>";
         echo "<td><a href='./teachers_edit_exam.php?id=" . $row['kód'] .
-         "&ferohely=" . urlencode($row['férőhely']) . 
-         "&ido=" . urlencode($row['időpont']) . 
-         "&jelleg=" . urlencode($row['jelleg']) . "'>Edit</a></td>";
-         echo "<td><a href='./include/functionalities/delete_exam.php ?id=" . $row['kód'] . "'>Delete</a></td>";
+            "&ferohely=" . urlencode($row['férőhely']) .
+            "&ido=" . urlencode($row['időpont']) .
+            "&jelleg=" . urlencode($row['jelleg']) . "'>Edit</a></td>";
+        echo "<td><a href='teachers_delete_exam.php?id=" . $row['kód'] . "'>Delete</a></td>";
         echo "</tr></tbody>";
     }
 
@@ -36,4 +37,3 @@ if ($result->num_rows > 0) {
     echo "<p>No courses found.</p>";
 }
 $stmt->close();
-?>

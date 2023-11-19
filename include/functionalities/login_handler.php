@@ -1,4 +1,5 @@
 <?php
+include_once("./include/db/mysql_connect.php");
 $username = $password = $stmt = $result = $row = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

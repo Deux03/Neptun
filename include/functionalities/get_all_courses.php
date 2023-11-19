@@ -1,4 +1,5 @@
 <?php
+include_once("./include/db/mysql_connect.php");
 $orderBy = isset($_GET['orderby']) ? $_GET['orderby'] : 'kód';
 $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
 $stmt = $conn->prepare("SELECT * FROM kurzus ORDER BY `$orderBy` $order;");
@@ -14,6 +15,7 @@ if ($result->num_rows > 0) {
     echo "<th class='sortable' onclick=\"window.location.href='?orderby=heti óraszám&order=" . ($order === 'ASC' ? 'DESC' : 'ASC') . "'\">Heti óraszám &#9650;&#9660;</th>";
     echo "<th class='sortable' onclick=\"window.location.href='?orderby=jelleg&order=" . ($order === 'ASC' ? 'DESC' : 'ASC') . "'\">Jelleg &#9650;&#9660;</th>";
     echo "<th class='sortable' onclick=\"window.location.href='?orderby=cím&order=" . ($order === 'ASC' ? 'DESC' : 'ASC') . "'\">Cím &#9650;&#9660;</th>";
+    echo "<th>Delete</th>";
     echo "</tr></thead>";
 
     while ($row = $result->fetch_assoc()) {
@@ -23,6 +25,7 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["heti óraszám"] . "</td>";
         echo "<td>" . $row["jelleg"] . "</td>";
         echo "<td>" . $row["cím"] . "</td>";
+        echo "<td><a href='teachers_delete_course.php?id=" . $row['kód'] . "'>Delete</a></td>";
         echo "</tr></tbody>";
     }
 
@@ -31,4 +34,4 @@ if ($result->num_rows > 0) {
     echo "<p>No courses found.</p>";
 }
 $stmt->close();
-?>
+

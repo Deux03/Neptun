@@ -1,4 +1,5 @@
 <?php
+include_once("./include/db/mysql_connect.php");
 $username = $status = $major = $birthdate = $birthplace = $password = $name = $isStudent = $sql = $stmt = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -32,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute()) {
                 $stmt->close();
+                $_SESSION['registrationSuccess'] = true;
                 header("Location: ./index.php");
                 exit();
             } else {

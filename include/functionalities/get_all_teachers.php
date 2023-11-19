@@ -1,4 +1,5 @@
 <?php
+include_once("./include/db/mysql_connect.php");
 $orderBy = isset($_GET['orderby']) ? $_GET['orderby'] : 'felhasználó név';
 $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
 $stmt = $conn->prepare("SELECT * FROM `felhasználó` WHERE `hallgató-e`='1'  ORDER BY `$orderBy` $order;");
@@ -33,4 +34,3 @@ if ($result->num_rows > 0) {
     echo "<p>No students were found.</p>";
 }
 $stmt->close();
-?>
