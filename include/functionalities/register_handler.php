@@ -1,6 +1,6 @@
 <?php
 include_once("./include/db/mysql_connect.php");
-$username = $status = $major = $birthdate = $birthplace = $password = $name = $isStudent = $sql = $stmt = null;
+$username = $status = $major = $birthdate = $birthplace = $password = $name = $isStudent = $sqlKurzus = $stm = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST["jelszó"] != $_POST["jelszó2"]) {
@@ -27,19 +27,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $name = $_POST["név"];
             $isStudent = ($_POST["hallgató"] == "teacher") ? 1 : 0;
 
-            $sql = "INSERT INTO felhasználó (`felhasználó név`, `státusz`, `szak`, `születési dátum`, `jelszó`, `név`, `hallgató-e`, `születési hely`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sissssis", $username, $status, $major, $birthdate, $password, $name, $isStudent, $birthplace);
+            $sqlKurzus = "INSERT INTO felhasználó (`felhasználó név`, `státusz`, `szak`, `születési dátum`, `jelszó`, `név`, `hallgató-e`, `születési hely`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $stm = $conn->prepare($sqlKurzus);
+            $stm->bind_param("sissssis", $username, $status, $major, $birthdate, $password, $name, $isStudent, $birthplace);
 
-            if ($stmt->execute()) {
-                $stmt->close();
+            if ($stm->execute()) {
+                $stm->close();
                 $_SESSION['registrationSuccess'] = true;
                 header("Location: ./index.php");
                 exit();
             } else {
                 $errorMessage = "Sikertelen regisztráció. Próbáld újra később.";
             }
-            $stmt->close();
+            $stm->close();
         }
     }
 }

@@ -10,16 +10,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['newExam'])) {
     }
     $jelleg = $_POST['jelleg'];
 
-    $sql = "INSERT INTO `vizsga` (`kód`, `időpont`, `férőhely`, `jelleg`) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssis", $kod, $idopont, $ferohely, $jelleg);
+    $sqlKurzus = "INSERT INTO `vizsga` (`kód`, `időpont`, `férőhely`, `jelleg`) VALUES (?, ?, ?, ?)";
+    $stm = $conn->prepare($sqlKurzus);
+    $stm->bind_param("ssis", $kod, $idopont, $ferohely, $jelleg);
     try {
-        if ($stmt->execute()) {
+        if ($stm->execute()) {
             header("Location: ./teachers_exams.php");
-            $stmt->close();
+            $stm->close();
             exit();
         } else {
-            $errorMessage = "Sikertelen hozzáadás: " . $stmt->error;
+            $errorMessage = "Sikertelen hozzáadás: " . $stm->error;
         }
     } catch (mysqli_sql_exception $e) {
         if ($e->getCode() == 1062) {
@@ -28,5 +28,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['newExam'])) {
             $errorMessage = "MySQL Error: " . $e->getMessage();
         }
     }
-    $stmt->close();
+    $stm->close();
 }

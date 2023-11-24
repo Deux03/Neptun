@@ -27,15 +27,15 @@ if (isset($_GET['id'])) {
         $ido = $_POST['ido'];
         $jelleg = $_POST['jelleg'];
     
-        $stmt = $conn->prepare("UPDATE `vizsga` SET `időpont` = ?, `férőhely` = ?, `jelleg` = ? WHERE `kód` = ?");
-        $stmt->bind_param('siss', $ido, $ferohely, $jelleg, $id);
-        if($stmt->execute()){
+        $stm = $conn->prepare("UPDATE `vizsga` SET `időpont` = ?, `férőhely` = ?, `jelleg` = ? WHERE `kód` = ?");
+        $stm->bind_param('siss', $ido, $ferohely, $jelleg, $id);
+        if($stm->execute()){
             header("Location: ./teachers_exams.php");
-            $stmt->close();
+            $stm->close();
             exit();
         } else {
-            $errorMessage = "Sikertelen módosítás: " . $stmt->error;
+            $errorMessage = "Sikertelen módosítás: " . $stm->error;
         }
-        $stmt->close();
+        $stm->close();
     }
 }

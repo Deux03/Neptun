@@ -17,11 +17,8 @@ if (!(isset($_COOKIE["LoggedIn"]) && $_COOKIE["LoggedIn"] == true)) {
 <body>
     <?php include_once("./navbar.php"); ?>
     <div class="content">
-        <h1>Add the exam</h1>
-        <a href="./teachers_add_exmas.php">
-            <button type="button">Add exam</button>
-        </a>
         <?php
+        include_once("./include/functionalities/take_exam.php");
         if (!empty($errorMessage)) {
             echo "<p class='error-message'>$errorMessage</p>";
         }

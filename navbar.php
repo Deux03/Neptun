@@ -12,10 +12,8 @@ $isStudent = isset($_COOKIE["isStudent"]) ? $_COOKIE["isStudent"] : null;
                 echo '<li class="active"><a href="./index.php">Home</a></li>';
             } else {
                 echo '<li class="active"><a href="./neptun_index.php">Home</a></li>';
-            }
-            if($isStudent == "Teacher"){
-                echo '<li><a href="./teachers_courses.php">Courses</a></li>';
-                echo '<li><a href="./teachers_exams.php">Exams</a></li>';
+                echo '<li><a href="./courses.php">Courses</a></li>';
+                echo '<li><a href="./exams.php">Exams</a></li>';
             }
             ?>
         </ul>

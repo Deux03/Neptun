@@ -2,9 +2,9 @@
 include_once("./include/db/mysql_connect.php");
 $orderBy = isset($_GET['orderby']) ? $_GET['orderby'] : 'felhasználó név';
 $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
-$stmt = $conn->prepare("SELECT * FROM `felhasználó` WHERE `hallgató-e`='0'  ORDER BY `$orderBy` $order;");
-$stmt->execute();
-$result = $stmt->get_result();
+$stm = $conn->prepare("SELECT * FROM `felhasználó` WHERE `hallgató-e`='0'  ORDER BY `$orderBy` $order;");
+$stm->execute();
+$result = $stm->get_result();
 
 if ($result->num_rows > 0) {
     echo "<h2>All of the students</h2>";
@@ -33,4 +33,4 @@ if ($result->num_rows > 0) {
 } else {
     echo "<p>No students were found.</p>";
 }
-$stmt->close();
+$stm->close();

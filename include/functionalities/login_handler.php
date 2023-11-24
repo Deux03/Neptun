@@ -1,6 +1,6 @@
 <?php
 include_once("./include/db/mysql_connect.php");
-$username = $password = $stmt = $result = $row = null;
+$username = $password = $stm = $result = $row = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -9,10 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($username) || empty($password)) {
         echo "Please enter both username and password.";
     } else {
-        $stmt = $conn->prepare("SELECT * FROM `felhasználó` WHERE `felhasználó név`=?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $stm = $conn->prepare("SELECT * FROM `felhasználó` WHERE `felhasználó név`=?");
+        $stm->bind_param("s", $username);
+        $stm->execute();
+        $result = $stm->get_result();
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
@@ -29,6 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Invalid username or password.";
         }
-        $stmt->close();
+        $stm->close();
     }
 }

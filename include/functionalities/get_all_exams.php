@@ -2,9 +2,9 @@
 include_once("./include/db/mysql_connect.php");
 $orderBy = isset($_GET['orderby']) ? $_GET['orderby'] : 'kód';
 $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
-$stmt = $conn->prepare("SELECT * FROM vizsga ORDER BY `$orderBy` $order;");
-$stmt->execute();
-$result = $stmt->get_result();
+$stm = $conn->prepare("SELECT * FROM vizsga ORDER BY `$orderBy` $order;");
+$stm->execute();
+$result = $stm->get_result();
 
 if ($result->num_rows > 0) {
     echo "<h2>All of the exams</h2>";
@@ -14,8 +14,12 @@ if ($result->num_rows > 0) {
     echo "<th class='sortable' onclick=\"window.location.href='?orderby=időpont&order=" . ($order === 'ASC' ? 'DESC' : 'ASC') . "'\">Időpont &#9650;&#9660;</th>";
     echo "<th class='sortable' onclick=\"window.location.href='?orderby=férőhely&order=" . ($order === 'ASC' ? 'DESC' : 'ASC') . "'\">Férőhely &#9650;&#9660;</th>";
     echo "<th class='sortable' onclick=\"window.location.href='?orderby=jelleg&order=" . ($order === 'ASC' ? 'DESC' : 'ASC') . "'\">Jelleg &#9650;&#9660;</th>";
-    echo "<th>Edit</th>";
-    echo "<th>Delete</th>";
+    if ($isStudent == "Teacher") {
+        echo "<th>Edit</th>";
+        echo "<th>Delete</th>";
+    } else if ($isStudent == "Student") {
+        echo "<th>Take exam</th>";
+    }
     echo "</tr></thead>";
 
     while ($row = $result->fetch_assoc()) {
@@ -24,11 +28,16 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["időpont"] . "</td>";
         echo "<td>" . $row["férőhely"] . "</td>";
         echo "<td>" . $row["jelleg"] . "</td>";
-        echo "<td><a href='./teachers_edit_exam.php?id=" . $row['kód'] .
-            "&ferohely=" . urlencode($row['férőhely']) .
-            "&ido=" . urlencode($row['időpont']) .
-            "&jelleg=" . urlencode($row['jelleg']) . "'>Edit</a></td>";
-        echo "<td><a href='teachers_delete_exam.php?id=" . $row['kód'] . "'>Delete</a></td>";
+        if ($isStudent == "Teacher") {
+            echo "<td><a href='./teachers_edit_exam.php?id=" . $row['kód'] .
+                "&ferohely=" . urlencode($row['férőhely']) .
+                "&ido=" . urlencode($row['időpont']) .
+                "&jelleg=" . urlencode($row['jelleg']) . "'>Edit</a></td>";
+            echo "<td><a href='teachers_delete_exam.php?id=" . $row['kód'] . "'>Delete</a></td>";
+        } else if ($isStudent == "Student") {
+            echo "<td><a href='./student_take_exam.php?id=" . $row['kód'] .
+                "&idopont=" . urlencode($row['időpont']) . "'>Take exam</a></td>";
+        }
         echo "</tr></tbody>";
     }
 
@@ -36,4 +45,4 @@ if ($result->num_rows > 0) {
 } else {
     echo "<p>No courses found.</p>";
 }
-$stmt->close();
+$stm->close();

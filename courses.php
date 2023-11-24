@@ -17,10 +17,15 @@ if (!(isset($_COOKIE["LoggedIn"]) && $_COOKIE["LoggedIn"] == true)) {
 <body>
     <?php include_once("./navbar.php"); ?>
     <div class="content">
-        <h1>Add the course</h1>
-        <a href="./teachers_add_course.php">
-            <button type="button">Add course</button>
-        </a>
+        <?php
+        if ($isStudent == "Teacher") {
+            echo '<h1>Add the course</h1>';
+            echo '<a href="./teachers_add_course.php">';
+            echo '<button type="button">Add course</button>';
+            echo '</a>';
+        } else if ($isStudent == "Student") {
+        }
+        ?>
         <?php
         if (!empty($errorMessage)) {
             echo "<p class='error-message'>$errorMessage</p>";

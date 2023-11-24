@@ -2,7 +2,7 @@
 include_once("./include/db/mysql_connect.php");
 $orderBy = isset($_GET['orderby']) ? $_GET['orderby'] : 'kód';
 $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
-$stmt = $conn->prepare("SELECT * FROM kurzus ORDER BY `$orderBy` $order;");
+$stmt = $conn->prepare("SELECT kurzus.*, szemeszter.szemeszter FROM kurzus LEFT JOIN szemeszter ON kurzus.kód = szemeszter.kód ORDER BY kurzus.`$orderBy` $order;");
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -15,7 +15,12 @@ if ($result->num_rows > 0) {
     echo "<th class='sortable' onclick=\"window.location.href='?orderby=heti óraszám&order=" . ($order === 'ASC' ? 'DESC' : 'ASC') . "'\">Heti óraszám &#9650;&#9660;</th>";
     echo "<th class='sortable' onclick=\"window.location.href='?orderby=jelleg&order=" . ($order === 'ASC' ? 'DESC' : 'ASC') . "'\">Jelleg &#9650;&#9660;</th>";
     echo "<th class='sortable' onclick=\"window.location.href='?orderby=cím&order=" . ($order === 'ASC' ? 'DESC' : 'ASC') . "'\">Cím &#9650;&#9660;</th>";
-    echo "<th>Delete</th>";
+    echo "<th>Szemeszter</th>";
+    if($isStudent == "Teacher"){
+        echo "<th>Delete</th>";
+    } else if ($isStudent == "Student"){
+        echo "<th>Apply</th>";
+    }
     echo "</tr></thead>";
 
     while ($row = $result->fetch_assoc()) {
@@ -25,7 +30,12 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["heti óraszám"] . "</td>";
         echo "<td>" . $row["jelleg"] . "</td>";
         echo "<td>" . $row["cím"] . "</td>";
-        echo "<td><a href='teachers_delete_course.php?id=" . $row['kód'] . "'>Delete</a></td>";
+        echo "<td>" . ($row["szemeszter"] ?? 'nem adták meg') . "</td>";
+        if($isStudent == "Teacher"){
+            echo "<td><a href='teachers_delete_course.php?id=" . $row['kód'] . "'>Delete</a></td>";
+        } else if ($isStudent == "Student"){
+            echo "<td><a href='student_take_course.php?id=" . $row['kód'] . "'>Take course</a></td>";
+        }
         echo "</tr></tbody>";
     }
 

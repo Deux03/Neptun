@@ -4,22 +4,22 @@ include_once("./include/db/mysql_connect.php");
 if (isset($_GET['id'])) {
     $kod = $_GET['id'];
     if (isset($_POST['confirmDelete'])) {
-        $stmt = $conn->prepare("DELETE FROM `kurzus` WHERE `kód` = ?");
-        $stmt->bind_param('s', $kod);
+        $stm = $conn->prepare("DELETE FROM `kurzus` WHERE `kód` = ?");
+        $stm->bind_param('s', $kod);
 
         try {
-            if ($stmt->execute()) {
+            if ($stm->execute()) {
                 header("Location: ./teachers_courses.php");
-                $stmt->close();
+                $stm->close();
                 exit();
             } else {
-                $errorMessage = "Sikertelen törlés: " . $stmt->error;
+                $errorMessage = "Sikertelen törlés: " . $stm->error;
             }
         } catch (mysqli_sql_exception $e) {
             $errorMessage = "MySQL Error: " . $e->getMessage();
         }
 
-        $stmt->close();
+        $stm->close();
     }
     ?>
     <form method="post">

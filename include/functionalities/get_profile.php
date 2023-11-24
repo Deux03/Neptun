@@ -3,10 +3,10 @@ include_once("./include/db/mysql_connect.php");
 $username = isset($_COOKIE["username"]) ? $_COOKIE["username"] : null;
 $name = isset($_COOKIE["name"]) ? $_COOKIE["name"] : null;
 $isStudent = isset($_COOKIE["isStudent"]) ? $_COOKIE["isStudent"] : null;
-$stmt = $conn->prepare("SELECT `státusz`, `szak`, `születési dátum`, `születési hely` FROM `felhasználó` WHERE `felhasználó név`=?");
-$stmt->bind_param("s", $username);
-$stmt->execute();
-$result = $stmt->get_result();
+$stm = $conn->prepare("SELECT `státusz`, `szak`, `születési dátum`, `születési hely` FROM `felhasználó` WHERE `felhasználó név`=?");
+$stm->bind_param("s", $username);
+$stm->execute();
+$result = $stm->get_result();
 if ($result->num_rows > 0) {
     echo "<div class='profile-table-container'>";
     echo "<table>";
@@ -27,5 +27,5 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-$stmt->close();
+$stm->close();
 
