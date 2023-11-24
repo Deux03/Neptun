@@ -24,11 +24,10 @@ include_once("./include/functionalities/register_handler.php");
                     <input type="text" class="felhasználó_név" name="felhasználó_név" maxlength="6" required><br>
 
                     <label for="státusz">Status:</label>
-                    <input list="status" class="státusz" name="státusz" required>
-                    <datalist class="status">
-                        <option value="active">
-                        <option value="passive">
-                    </datalist><br><br>
+                    <select class="státusz" name="státusz" required>
+                        <option value="active">Active</option>
+                        <option value="passive">Passive</option>
+                    </select><br>
 
                     <label for="szak">Major:</label>
                     <input type="text" class="szak" name="szak" maxlength="30" required><br>
@@ -49,11 +48,10 @@ include_once("./include/functionalities/register_handler.php");
                     <input type="text" class="név" name="név" maxlength="40" required><br>
 
                     <label for="hallgató">Role:</label>
-                    <input list="jogok" class="hallgató" name="hallgató" required>
-                    <datalist class="jogok">
-                        <option value="teacher">
-                        <option value="student">
-                    </datalist><br>
+                    <select class="hallgató" name="hallgató" required>
+                        <option value="teacher">Teacher</option>
+                        <option value="student">Student</option>
+                    </select><br>
 
                     <input type="submit" value="Register">
                 </form>

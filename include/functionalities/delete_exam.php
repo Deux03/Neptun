@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
 
         try {
             if ($stm->execute()) {
-                header("Location: ./teachers_exams.php");
+                header("Location: ./exams.php");
                 $stm->close();
                 exit();
             } else {
@@ -25,7 +25,7 @@ if (isset($_GET['id'])) {
     <form method="post">
         <p>Are you sure that you want to delete this exam? (kód: <?php echo htmlspecialchars($kod); ?>)?</p>
         <input type="submit" name="confirmDelete" value="Yes">
-        <button type="button" onclick="window.location.href='./teachers_exams.php'">Cancel</button>
+        <button type="button" onclick="window.location.href='./exams.php'">Cancel</button>
     </form>
     <?php
 } else {

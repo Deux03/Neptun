@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Nov 24. 17:34
+-- Létrehozás ideje: 2023. Nov 24. 19:25
 -- Kiszolgáló verziója: 10.4.27-MariaDB
 -- PHP verzió: 8.2.0
 
@@ -99,10 +99,10 @@ CREATE TABLE `hallgatja` (
 --
 
 INSERT INTO `hallgatja` (`felhasználó név`, `kód`) VALUES
-('diak', 'AS32o'),
-('diak2', 'AS32o'),
-('diak2', 'IB097L'),
-('diak2', 'IB153e-1');
+('diak', 'IB302g-1'),
+('diak', 'IB402E-1'),
+('diak2', 'IB153e-1'),
+('diak2', 'IB153I-7');
 
 -- --------------------------------------------------------
 
@@ -115,6 +115,17 @@ CREATE TABLE `jelentkezik` (
   `kód` varchar(20) NOT NULL,
   `időpont` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `jelentkezik`
+--
+
+INSERT INTO `jelentkezik` (`felhasználó név`, `kód`, `időpont`) VALUES
+('diak', 'IB302g-1', '2023-12-02 01:48:00'),
+('diak', 'IB370E-1', '2023-11-18 23:46:35'),
+('diak', 'IBK203G-10', '2023-12-01 07:33:00'),
+('diak', 'MBNXK114E-1', '2023-11-16 03:03:00'),
+('diak2', 'IB302e-1', '2023-12-02 01:48:00');
 
 -- --------------------------------------------------------
 
@@ -135,11 +146,8 @@ CREATE TABLE `kurzus` (
 --
 
 INSERT INTO `kurzus` (`kód`, `férőhely`, `heti óraszám`, `jelleg`, `cím`) VALUES
-('AS32o', 100, 1, 'labor', 'Biológia rejtelmei'),
-('IB097L', 36, 2, 'Labor', 'Alkalmazásfejlesztés c# alapokon'),
 ('IB153e-1', 300, 2, 'Előadás', 'Rendszerfejlesztés I. Előadás'),
 ('IB153I-7', 24, 1, 'Gyakorlat', 'Rendszerfejlesztés I. gyakorlat'),
-('IB204E-1', 600, 3, 'Előadás', 'Programozás I. Előadás'),
 ('IB204L-4', 60, 2, 'Labor', 'Programozás I. gyakorlat'),
 ('IB302e-1', 600, 2, 'Előadás', 'Programozás II. Előadás'),
 ('IB302g-1', 30, 1, 'Gyakorlat', 'Programozás II. gyakorlat'),
@@ -192,7 +200,6 @@ CREATE TABLE `szemeszter` (
 --
 
 INSERT INTO `szemeszter` (`kód`, `szemeszter`) VALUES
-('AS32o', 6),
 ('IB370G-7', 6);
 
 -- --------------------------------------------------------
@@ -206,11 +213,19 @@ CREATE TABLE `terem` (
   `emelet` int(1) NOT NULL,
   `ajtó` int(3) NOT NULL,
   `név` varchar(30) NOT NULL,
-  `férőhely` int(1) NOT NULL,
+  `férőhely` int(3) NOT NULL,
   `jelleg` varchar(20) NOT NULL,
-  `kód` varchar(20) NOT NULL,
-  `időpont` datetime NOT NULL
+  `kód` varchar(20) DEFAULT NULL,
+  `időpont` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `terem`
+--
+
+INSERT INTO `terem` (`cím`, `emelet`, `ajtó`, `név`, `férőhely`, `jelleg`, `kód`, `időpont`) VALUES
+('Szeged 6725 Arady tér 6b', 3, 125, 'Nagy Magdolna terem', 520, 'Előadó', NULL, NULL),
+('Szeged 6725 Dugonics tér 67.', 0, 5, 'Nagy Előadó', 999, 'Előadó', 'IB402E-1', '2023-11-18 18:13:43');
 
 -- --------------------------------------------------------
 
@@ -230,7 +245,6 @@ CREATE TABLE `vizsga` (
 --
 
 INSERT INTO `vizsga` (`kód`, `időpont`, `férőhely`, `jelleg`) VALUES
-('IB302g-1', '2023-12-02 01:48:00', 20, 'írásbeli'),
 ('IB370E-1', '2023-11-18 23:46:35', 50, 'Írásbeli'),
 ('IBK203G-10', '2023-12-01 07:33:00', 30, 'jelenléti'),
 ('MBNXK114E-1', '2023-11-16 03:03:00', 60, 'online');
@@ -251,14 +265,16 @@ ALTER TABLE `felhasználó`
 --
 ALTER TABLE `hallgatja`
   ADD PRIMARY KEY (`felhasználó név`,`kód`),
-  ADD UNIQUE KEY `felhasználó név` (`felhasználó név`,`kód`);
+  ADD UNIQUE KEY `felhasználó név` (`felhasználó név`,`kód`),
+  ADD KEY `hallgatja_ibfk_2` (`kód`);
 
 --
 -- A tábla indexei `jelentkezik`
 --
 ALTER TABLE `jelentkezik`
   ADD PRIMARY KEY (`felhasználó név`,`kód`,`időpont`),
-  ADD UNIQUE KEY `felhasználó név` (`felhasználó név`,`időpont`);
+  ADD UNIQUE KEY `felhasználó név` (`felhasználó név`,`időpont`),
+  ADD KEY `jelentkezik_ibfk_2` (`kód`);
 
 --
 -- A tábla indexei `kurzus`
@@ -272,7 +288,8 @@ ALTER TABLE `kurzus`
 --
 ALTER TABLE `oktat`
   ADD PRIMARY KEY (`felhasználó név`,`kód`),
-  ADD UNIQUE KEY `felhasználó név` (`felhasználó név`,`kód`);
+  ADD UNIQUE KEY `felhasználó név` (`felhasználó név`,`kód`),
+  ADD KEY `oktat_ibfk_2` (`kód`);
 
 --
 -- A tábla indexei `szemeszter`
@@ -286,7 +303,8 @@ ALTER TABLE `szemeszter`
 --
 ALTER TABLE `terem`
   ADD PRIMARY KEY (`cím`,`emelet`,`ajtó`),
-  ADD UNIQUE KEY `időpont` (`időpont`);
+  ADD UNIQUE KEY `időpont` (`időpont`),
+  ADD KEY `terem_ibfk_1` (`kód`);
 
 --
 -- A tábla indexei `vizsga`
