@@ -18,7 +18,7 @@ include_once("./include/functionalities/add_course.php");
 <body>
     <?php include_once("./navbar.php"); ?>
     <div class="content">
-        <h1>Add a new exam</h1>
+        <h1>Add a new course</h1>
         <form method="post" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>>
             <label for="kód">kód:</label>
             <input type="text" class="kód" name="kód" maxlength="20" required><br>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Nov 24. 19:25
+-- Létrehozás ideje: 2023. Nov 25. 20:44
 -- Kiszolgáló verziója: 10.4.27-MariaDB
 -- PHP verzió: 8.2.0
 
@@ -49,6 +49,7 @@ INSERT INTO `felhasználó` (`felhasználó név`, `státusz`, `szak`, `szület�
 ('admin', 1, 'info', '2023-11-09', 'Szeged', '$2y$10$gKbLpjMb6EFv0bv81ZRNVeoCiA5TSRHa9gHB/s5Pz.VA5FlYpUNB6', 'Jani', 1),
 ('angela', 0, 'science', '2003-09-13', 'Kentbury', '$2b$12$RX1ivZwcwGN3FUFmANd0T.O2AmsFA4MeQ9K2c3yzwWAEkW78xB6XS', 'Mary Phelps', 1),
 ('brentr', 1, 'math', '1990-08-07', 'Donnaburgh', '$2b$12$EGvgmntrtWcKDYiepehWM.gu4Asta7DDtgGV9pT/qvj4IS8ljEGcm', 'Dr. Chambers', 0),
+('CBER3F', 1, 'pshyco ', '2002-03-27', 'Szeged', '$2y$10$uzY4oGs5pIgCKJC9xYccXOJYkt1yjJrinG2YComtvPDopT6nvTn.a', 'Palkó Eszter', 1),
 ('cburns', 1, 'history', '1987-05-01', 'West Valerie', '$2b$12$zjSV7XZIdoEp9iS.yrh47u3mW1FweFhQbrTTvYKB.QCkfoByeFOZG', 'Dr. Ruiz', 0),
 ('christ', 1, 'science', '1987-08-05', 'Charlotteburgh', '$2b$12$IvNA7X5kOqLcOg/tvGag3uRzRj/TGYNOnwU0wwrbVqeY65/YfJNf.', 'Dr. Cooper', 0),
 ('crobin', 0, 'science', '1999-08-15', 'Gavinfurt', '$2b$12$g.4mJjYOxBwXU.EYYzWbqef/wkiyD37K2FS92TMdUbChTYx0M/5Da', 'Jamie Reyes', 1),
@@ -74,6 +75,7 @@ INSERT INTO `felhasználó` (`felhasználó név`, `státusz`, `szak`, `szület�
 ('sherri', 1, 'science', '1969-12-14', 'South Williamchester', '$2b$12$8peWF2POzeXx2SZPDEV18O4Vs0MZT0G2P3GFaaimkBsh6K4B3EmVS', 'Dr. Curtis', 0),
 ('stepha', 1, 'business', '2000-11-28', 'Brittanyville', '$2b$12$IM6.WnnDe/smbn.BAQX1H.DXdQVKSOA.eNU65LDhQLdQt5CZeZp0u', 'Lindsay Chapman', 1),
 ('steve9', 0, 'engineering', '2003-02-07', 'South Scott', '$2b$12$zszpdf.2rHDYeMqON6deHeOllXE6cLeQf6eP39J8fbUnGSvJB.mm6', 'Patricia Hoffman', 1),
+('szti', 1, 'pshyco ', '2002-03-27', 'Budapest', '$2y$10$5AyUprK4es0vjKMPZEawE.JBM4Ob4zo87jd1aWYYeb9W0vSwOCQ3W', 'Palkó Eszter', 0),
 ('teache', 1, 'info', '2000-02-02', 'Szeged', '$2y$10$/gh2jM.3LBwAPILdkCHCy.3ozLXEK2Fb7rBX.Iej8sLZM3KXwgSQu', 'Dr. Nagy Gábor', 1),
 ('timoth', 1, 'science', '2003-09-30', 'East Shawnchester', '$2b$12$cTMrVxv.oIu4uUG6CezBMee0CHH000jM/PCfEOKggLbZaDooBDZeq', 'George Cole', 1),
 ('torres', 1, 'math', '1989-02-18', 'Lake Ashleyland', '$2b$12$HwC3sAtg.Jrr9uPDlwjX.uwnmcm6fvHnpI8MYDQ1QpuxPd0DyLppm', 'Dr. Phillips', 0),
@@ -99,10 +101,21 @@ CREATE TABLE `hallgatja` (
 --
 
 INSERT INTO `hallgatja` (`felhasználó név`, `kód`) VALUES
+('diak', 'IB153e-1'),
 ('diak', 'IB302g-1'),
 ('diak', 'IB402E-1'),
+('diak', 'IB402g-7'),
+('diak', 'IB501e-1'),
+('diak', 'IBK304g-7'),
+('diak', 'MBNXK112G-10'),
+('diak', 'MBNXK311E-1'),
 ('diak2', 'IB153e-1'),
-('diak2', 'IB153I-7');
+('diak2', 'IB153I-7'),
+('szti', 'IB153e-1'),
+('szti', 'IB153I-7'),
+('szti', 'IB501e-1'),
+('szti', 'IBK304E-1'),
+('szti', 'ONLE+!');
 
 -- --------------------------------------------------------
 
@@ -123,9 +136,16 @@ CREATE TABLE `jelentkezik` (
 INSERT INTO `jelentkezik` (`felhasználó név`, `kód`, `időpont`) VALUES
 ('diak', 'IB302g-1', '2023-12-02 01:48:00'),
 ('diak', 'IB370E-1', '2023-11-18 23:46:35'),
+('diak', 'IB370E-1', '2023-11-22 15:24:00'),
+('diak', 'IB370E-1', '2023-11-29 15:25:00'),
+('diak', 'IB370E-1', '2024-11-15 15:26:00'),
 ('diak', 'IBK203G-10', '2023-12-01 07:33:00'),
 ('diak', 'MBNXK114E-1', '2023-11-16 03:03:00'),
-('diak2', 'IB302e-1', '2023-12-02 01:48:00');
+('diak2', 'IB302e-1', '2023-12-02 01:48:00'),
+('diak2', 'IB370E-1', '2023-11-18 23:46:35'),
+('diak2', 'IBK203G-10', '2023-12-01 07:33:00'),
+('diak2', 'MBNXK114E-1', '2023-11-16 03:03:00'),
+('szti', 'IB370E-1', '2023-11-22 15:24:00');
 
 -- --------------------------------------------------------
 
@@ -151,6 +171,7 @@ INSERT INTO `kurzus` (`kód`, `férőhely`, `heti óraszám`, `jelleg`, `cím`) 
 ('IB204L-4', 60, 2, 'Labor', 'Programozás I. gyakorlat'),
 ('IB302e-1', 600, 2, 'Előadás', 'Programozás II. Előadás'),
 ('IB302g-1', 30, 1, 'Gyakorlat', 'Programozás II. gyakorlat'),
+('IB302g-1123123123', 20, 1, 'szép', 'naigen'),
 ('IB370E-1', 540, 2, 'Előadás', 'Szkriptnyelvek Előadás'),
 ('IB370G-7', 18, 1, 'Gyakorlat', 'Szkriptnyelvek gyakorlat'),
 ('IB402E-1', 600, 2, 'Előadás', 'Operációs rendszerek Előadás'),
@@ -200,7 +221,34 @@ CREATE TABLE `szemeszter` (
 --
 
 INSERT INTO `szemeszter` (`kód`, `szemeszter`) VALUES
-('IB370G-7', 6);
+('IB153e-1', 1),
+('IB153I-7', 1),
+('IB204L-4', 1),
+('IB302e-1', 1),
+('IB302g-1', 1),
+('IB302g-1123123123', 3),
+('IB370E-1', 1),
+('IB370G-7', 1),
+('IB370G-7', 6),
+('IB402E-1', 1),
+('IB402g-7', 1),
+('IB501e-1', 1),
+('IB501g-12', 1),
+('IB714E-1', 1),
+('IB714g-10', 1),
+('IBK203E-1', 1),
+('IBK203G-10', 1),
+('IBK304E-1', 1),
+('IBK304g-7', 1),
+('IBK604G-5', 1),
+('MBNXK112E-1', 1),
+('MBNXK112G-10', 1),
+('MBNXK114E-1', 1),
+('MBNXK114G-7', 1),
+('MBNXK311E-1', 1),
+('ONLE+!', 5),
+('XA0021-HlgJog', 2),
+('XA0021-IJövMuAdó-TTI', 2);
 
 -- --------------------------------------------------------
 
@@ -224,8 +272,28 @@ CREATE TABLE `terem` (
 --
 
 INSERT INTO `terem` (`cím`, `emelet`, `ajtó`, `név`, `férőhely`, `jelleg`, `kód`, `időpont`) VALUES
+('Szeged 6725 Algyői út 12.', 1, 20, 'Multifunkciós Nagyterem', 350, 'vizsga', 'IB370E-1', '2023-11-18 23:46:00'),
 ('Szeged 6725 Arady tér 6b', 3, 125, 'Nagy Magdolna terem', 520, 'Előadó', NULL, NULL),
-('Szeged 6725 Dugonics tér 67.', 0, 5, 'Nagy Előadó', 999, 'Előadó', 'IB402E-1', '2023-11-18 18:13:43');
+('Szeged 6725 Árpád utca 23.', 4, 450, 'Nagy Gyakorlati Terem', 300, 'Gyakorlat', NULL, NULL),
+('Szeged 6725 Bajnai út 23.', 4, 460, 'Nagy Számítógép Labor', 400, 'Laboratórium', NULL, NULL),
+('Szeged 6725 Béke tér 3.', 3, 301, 'Multifunkciós Terem', 200, 'Előadó', NULL, NULL),
+('Szeged 6725 Deák Ferenc tér 12.', 2, 110, 'Kis Előadó', 50, 'Előadó', NULL, NULL),
+('Szeged 6725 Dugonics tér 67.', 0, 5, 'Nagy Előadó', 999, 'vizsga', 'IB402E-1', '2023-11-18 18:13:43'),
+('Szeged 6725 Fehér híd 5.', 0, 5, 'Egyetemi Könyvtár', 400, 'Kutatóterem', NULL, NULL),
+('Szeged 6725 Fekete Sas utca 2.', 4, 420, 'Számítógép Labor', 25, 'Laboratórium', NULL, NULL),
+('Szeged 6725 Gutenberg tér 15.', 3, 308, 'Nagy Konferenciaterem', 280, 'Konferencia', NULL, NULL),
+('Szeged 6725 Gutenberg tér 8.', 1, 10, 'Kicsi Tanterem', 30, 'Előadó', NULL, NULL),
+('Szeged 6725 Hargita utca 4.', 4, 430, 'Kémia Labor', 20, 'Laboratórium', NULL, NULL),
+('Szeged 6725 Hattyas sor 12.', 1, 18, 'Koncertterem', 350, 'Művészeti', NULL, NULL),
+('Szeged 6725 Kálvária sugárút 25.', 0, 3, 'Gyakorlati Terem', 40, 'Gyakorlat', NULL, NULL),
+('Szeged 6725 Kárász utca 15.', 2, 205, 'Díszterem', 150, 'Konferencia', NULL, NULL),
+('Szeged 6725 Kossuth Lajos tér 18.', 0, 2, 'Modern Tanterem', 40, 'Előadó', NULL, NULL),
+('Szeged 6725 Madách tér 7.', 3, 325, 'Zenei Terem', 60, 'Művészeti', NULL, NULL),
+('Szeged 6725 Rákóczi tér 10.', 2, 210, 'Közösségi Terem', 300, 'Előadó', NULL, NULL),
+('Szeged 6725 Rókus tér 10.', 2, 215, 'Modern Előadó', 230, 'Előadó', NULL, NULL),
+('Szeged 6725 Roosevelt tér 6.', 1, 15, 'Projektoros Terem', 80, 'Előadó', NULL, NULL),
+('Szeged 6725 Szent-Györgyi Albert utca 2.', 3, 305, 'Nagy Laboratórium', 250, 'Laboratórium', NULL, NULL),
+('Szeged 6725 Tisza Lajos körút 5.', 0, 8, 'Színházi Terem', 280, 'Művészeti', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -245,9 +313,13 @@ CREATE TABLE `vizsga` (
 --
 
 INSERT INTO `vizsga` (`kód`, `időpont`, `férőhely`, `jelleg`) VALUES
+('IB370E-1', '2023-11-18 23:46:00', 305, '4'),
 ('IB370E-1', '2023-11-18 23:46:35', 50, 'Írásbeli'),
-('IBK203G-10', '2023-12-01 07:33:00', 30, 'jelenléti'),
-('MBNXK114E-1', '2023-11-16 03:03:00', 60, 'online');
+('IB370E-1', '2023-11-22 15:24:00', 600, 'online'),
+('IB370E-1', '2023-11-29 15:25:00', 300, 'írásbeli'),
+('IBK203G-10', '2023-12-14 07:33:00', 30, 'jelenléti'),
+('MBNXK112G-10', '2023-11-09 20:07:00', 30, 'online'),
+('MBNXK114E-1', '2023-11-16 03:03:00', 60, 'online2');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -311,7 +383,7 @@ ALTER TABLE `terem`
 --
 ALTER TABLE `vizsga`
   ADD PRIMARY KEY (`kód`,`időpont`),
-  ADD UNIQUE KEY `kurzus.kód` (`kód`);
+  ADD UNIQUE KEY `kód` (`kód`,`időpont`);
 
 --
 -- Megkötések a kiírt táblákhoz

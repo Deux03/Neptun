@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['newCourse'])) {
     $stm->bind_param("siiss", $kod, $ferohely, $hetoOraszam, $jelleg, $cim);
     try {
         if ($stm->execute() && $stmSzemeszter->execute()) {
-            header("Location: ./teachers_courses.php");
+            header("Location: ./courses.php");
             $stmSzemeszter->close();
             $stm->close();
             exit();

@@ -5,37 +5,42 @@ if (isset($_GET['id'])) {
     $ferohely = $_GET['ferohely'];
     $ido = $_GET['ido'];
     $jelleg = $_GET['jelleg'];
-
+    echo "<p>Editing ($id)'s exam</p>";
     echo "<form method='POST' action='#'>";
-    echo "<input type='hidden' name='id' value='" . $id . "'>";
     echo "<label for='ferohely'>Férőhely:</label>";
-    echo "<input type='number' name='ferohely' value='" . $ferohely . "'><br>";
+    echo "<input type='number' name='ferohely2' value='" . $ferohely . "'><br>";
     echo "<label for='ido'>Idő:</label>";
-    echo "<input type='datetime-local' name='ido' value='" . $ido . "'><br>";
+    echo "<input type='datetime-local' name='ido2' value='" . $ido . "'><br>";
     echo "<label for='jelleg'>Jelleg:</label>";
-    echo "<input type='text' name='jelleg' maxlength='20' value='" . $jelleg . "'><br>";
+    echo "<input type='text' name='jelleg2' maxlength='20' value='" . $jelleg . "'><br>";
     echo "<input class='button' type='submit' name='editedExam' value='Update'>";
     echo "</form>";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editedExam'])) {
-        $id = $_POST['id'];
-        $ferohely = $_POST['ferohely'];
-        if($ferohely < 0 || $ferohely >= 1000) {
+        $ferohely2 = $_POST['ferohely2'];
+        if ($ferohely2 < 0 || $ferohely2 >= 1000) {
             $errorMessage = "A férőhelynek 0 és 1000 között kell lennie!";
             return;
         }
-        $ido = $_POST['ido'];
-        $jelleg = $_POST['jelleg'];
-    
-        $stm = $conn->prepare("UPDATE `vizsga` SET `időpont` = ?, `férőhely` = ?, `jelleg` = ? WHERE `kód` = ?");
-        $stm->bind_param('siss', $ido, $ferohely, $jelleg, $id);
-        if($stm->execute()){
-            header("Location: ./teachers_exams.php");
-            $stm->close();
-            exit();
-        } else {
-            $errorMessage = "Sikertelen módosítás: " . $stm->error;
+        $ido2 = $_POST['ido2'];
+        $jelleg2 = $_POST['jelleg2'];
+        try {
+            $stm = $conn->prepare("UPDATE `vizsga` SET `időpont` = ?, `férőhely` = ?, `jelleg` = ? WHERE `kód` = ? AND `időpont` = ?");
+            $stm->bind_param('sisss', $ido2, $ferohely2, $jelleg2, $id, $ido);
+
+            if ($stm->execute()) {
+                header("Location: ./exams.php");
+                $stm->close();
+                exit();
+            } else {
+                
+            }
+        } catch (Exception $e) {
+            $errorMessage = "There is an exam already with this time for this exam!:" . $e->getMessage();
+        } finally {
+            if (isset($stm)) {
+                $stm->close();
+            }
         }
-        $stm->close();
     }
 }

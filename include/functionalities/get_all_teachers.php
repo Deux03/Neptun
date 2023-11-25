@@ -22,7 +22,7 @@ if ($result->num_rows > 0) {
         echo "<tr><tbody>";
         echo "<td>" . $row["felhasználó név"] . "</td>";
         echo "<td>" . $row["név"] . "</td>";
-        echo "<td>" . $row["státusz"] . "</td>";
+        echo "<td>" . htmlspecialchars($row["státusz"] == 1 ? "aktív" : "passzív") . "</td>";
         echo "<td>" . $row["szak"] . "</td>";
         echo "<td>" . $row["születési dátum"] . "</td>";
         echo "<td>" . $row["születési hely"] . "</td>";
