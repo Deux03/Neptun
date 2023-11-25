@@ -32,7 +32,7 @@ include_once("./include/functionalities/add_exam.php");
             <label for="jelleg">jelleg:</label>
             <input type="text" class="jelleg" name="jelleg" maxlength="20" required><br>
 
-            <input type="submit" name="newExam" value="Submit">
+            <input class="button" type="submit" name="newExam" value="Submit">
         </form>
         <?php
         if (!empty($errorMessage)) {

@@ -16,13 +16,13 @@ if (!(isset($_COOKIE["LoggedIn"]) && $_COOKIE["LoggedIn"] == true)) {
 
 <body>
     <?php include_once("./navbar.php"); ?>
-    <div class="neptun_bg">
-        <div class="content">
-            <h1>Welcome into the Neptun system</h1>
-            <?php
-            echo "<p>Logged in as: " . $_COOKIE["username"] . "</p>";
-            ?>
-        </div>
+    <div class="content">
+    <h1>Your Courses:</h1>
+    <?php
+        if (!empty($errorMessage)) {
+            echo "<p class='error-message'>$errorMessage</p>";
+        }
+        include_once("./include/functionalities/get_your_courses.php") ?>
     </div>
 </body>
 

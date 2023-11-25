@@ -23,8 +23,8 @@ if (isset($_GET['id'])) {
     }
     ?>
     <form method="post">
-        <p>Are you sure that you want to delete this exam? (kód: <?php echo htmlspecialchars($kod); ?>)?</p>
-        <input type="submit" name="confirmDelete" value="Yes">
+        <p class="question">Are you sure that you want to delete this exam? (kód: <?php echo htmlspecialchars($kod); ?>)?</p>
+        <input class="button" type="submit" name="confirmDelete" value="Yes">
         <button type="button" onclick="window.location.href='./exams.php'">Cancel</button>
     </form>
     <?php

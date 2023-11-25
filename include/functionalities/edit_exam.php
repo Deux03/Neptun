@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
     echo "<input type='datetime-local' name='ido' value='" . $ido . "'><br>";
     echo "<label for='jelleg'>Jelleg:</label>";
     echo "<input type='text' name='jelleg' maxlength='20' value='" . $jelleg . "'><br>";
-    echo "<input type='submit' name='editedExam' value='Update'>";
+    echo "<input class='button' type='submit' name='editedExam' value='Update'>";
     echo "</form>";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editedExam'])) {

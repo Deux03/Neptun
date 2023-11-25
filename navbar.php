@@ -15,6 +15,10 @@ $isStudent = isset($_COOKIE["isStudent"]) ? $_COOKIE["isStudent"] : null;
                 echo '<li><a href="./courses.php">Courses</a></li>';
                 echo '<li><a href="./exams.php">Exams</a></li>';
                 echo '<li><a href="./classrooms.php">Classrooms</a></li>';
+                if($isStudent == "Student"){
+                    echo '<li><a href="./your_exams.php">Your Exams</a></li>';
+                    echo '<li><a href="./your_courses.php">Your Courses</a></li>';
+                }
             }
             ?>
         </ul>

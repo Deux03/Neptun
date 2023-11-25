@@ -31,7 +31,7 @@ include_once("./include/functionalities/login_handler.php");
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required><br>
 
-                    <input type="submit" value="Login">
+                    <input class="button" type="submit" value="Login">
                 </form>
             </div>
             <div id="register_link">

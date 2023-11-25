@@ -17,7 +17,7 @@ if(!(isset($_COOKIE["LoggedIn"]) && $_COOKIE["LoggedIn"] == true)) {
 <body>
 <?php include_once("./navbar.php"); ?>
     <div class="content">
-        <h3>Profil</h3>
+        <h1>Profil</h1>
         <?php
         include_once("./include/functionalities/get_profile.php");
         if(isset($_COOKIE["isStudent"]) && $_COOKIE["isStudent"] == "Teacher") {

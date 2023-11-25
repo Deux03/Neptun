@@ -53,7 +53,7 @@ include_once("./include/functionalities/register_handler.php");
                         <option value="student">Student</option>
                     </select><br>
 
-                    <input type="submit" value="Register">
+                    <input class="button" type="submit" value="Register">
                 </form>
                 <?php
                 if (!empty($errorMessage)) {

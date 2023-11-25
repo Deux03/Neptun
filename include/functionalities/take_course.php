@@ -24,8 +24,8 @@ if (isset($_GET['id']) && isset($_COOKIE["username"])) {
     }
     ?>
     <form method="post">
-        <p>Are you sure that you want to apply for this course? (kód: <?php echo htmlspecialchars($kod); ?>)?</p>
-        <input type="submit" name="confirmApplyCourse" value="Yes">
+        <p class="question">Are you sure that you want to apply for this course? (kód: <?php echo htmlspecialchars($kod); ?>)?</p>
+        <input class="button" type="submit" name="confirmApplyCourse" value="Yes">
         <button type="button" onclick="window.location.href='./courses.php'">Cancel</button>
     </form>
     <?php

@@ -38,7 +38,7 @@ include_once("./include/functionalities/add_course.php");
             <label for="szemeszter">szemeszter:</label>
             <input type="number" class="szemeszter" name="szemeszter" min="0" max="9" required><br>
 
-            <input type="submit" name="newCourse" value="Submit">
+            <input class="button" type="submit" name="newCourse" value="Submit">
         </form>
         <?php
         if (!empty($errorMessage)) {

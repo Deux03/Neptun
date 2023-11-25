@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['newExam'])) {
     $stm->bind_param("ssis", $kod, $idopont, $ferohely, $jelleg);
     try {
         if ($stm->execute()) {
-            header("Location: ./teachers_exams.php");
+            header("Location: ./exams.php");
             $stm->close();
             exit();
         } else {

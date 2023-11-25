@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
 
     while ($row = $result->fetch_assoc()) {
         echo "<tr><tbody>";
-        echo "<td>" . $row["kód"] . "</td>";
+        echo "<td><a href='./show_exam_dates.php?exam_id=" . $row['kód'] . "'>" . $row["kód"] . "</a></td>";
         echo "<td>" . $row["időpont"] . "</td>";
         echo "<td>" . $row["férőhely"] . "</td>";
         echo "<td>" . $row["jelleg"] . "</td>";
