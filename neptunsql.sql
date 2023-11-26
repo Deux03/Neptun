@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Nov 26. 17:37
+-- Létrehozás ideje: 2023. Nov 26. 20:22
 -- Kiszolgáló verziója: 10.4.27-MariaDB
 -- PHP verzió: 8.2.0
 
@@ -48,6 +48,7 @@ INSERT INTO `felhasználó` (`felhasználó név`, `státusz`, `szak`, `szület�
 ('ad4', 1, 'info', '2023-11-18', 'Szeged', '$2y$10$Sb5K16kyxF3NNy9izjtuXu739M0dvJKNnSS6nktZ9Oy39nqg7Tuyu', 'jani jani jani', 0),
 ('admin', 1, 'info', '2023-11-09', 'Szeged', '$2y$10$gKbLpjMb6EFv0bv81ZRNVeoCiA5TSRHa9gHB/s5Pz.VA5FlYpUNB6', 'Jani', 1),
 ('angela', 0, 'science', '2003-09-13', 'Kentbury', '$2b$12$RX1ivZwcwGN3FUFmANd0T.O2AmsFA4MeQ9K2c3yzwWAEkW78xB6XS', 'Mary Phelps', 1),
+('asd', 1, 'asd', '2023-11-07', 'asdland', '$2y$10$F.GDdhMMtmAW6LRq56L9o.nhW0ReFbhAse4W3zDaPndWY8qby78k2', 'Nagy János ASD', 1),
 ('brentr', 1, 'math', '1990-08-07', 'Donnaburgh', '$2b$12$EGvgmntrtWcKDYiepehWM.gu4Asta7DDtgGV9pT/qvj4IS8ljEGcm', 'Dr. Chambers', 0),
 ('CBER3F', 1, 'pshyco ', '2002-03-27', 'Szeged', '$2y$10$uzY4oGs5pIgCKJC9xYccXOJYkt1yjJrinG2YComtvPDopT6nvTn.a', 'Palkó Eszter', 1),
 ('cburns', 1, 'history', '1987-05-01', 'West Valerie', '$2b$12$zjSV7XZIdoEp9iS.yrh47u3mW1FweFhQbrTTvYKB.QCkfoByeFOZG', 'Dr. Ruiz', 0),
@@ -158,7 +159,7 @@ INSERT INTO `jelentkezik` (`felhasználó név`, `kód`, `időpont`) VALUES
 CREATE TABLE `kurzus` (
   `kód` varchar(20) NOT NULL,
   `férőhely` int(3) NOT NULL,
-  `heti óraszám` int(2) NOT NULL,
+  `heti óraszám` int(1) NOT NULL,
   `jelleg` varchar(20) NOT NULL,
   `cím` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
