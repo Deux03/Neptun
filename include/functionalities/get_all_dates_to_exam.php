@@ -16,11 +16,18 @@ if ($result->num_rows > 0) {
     echo "<table><thead>";
     echo "<tr>";
     echo "<th>Vizsga időpontok</th>";
+    if($isStudent == "Student"){
+    echo "<th>Take exam</th>";
+    }
     echo "</tr></thead><tbody>";
 
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["időpont"] . "</td>";
+        if($isStudent == "Student"){
+            echo "<td><a href='./student_take_exam.php?id=" . $kod .
+                "&idopont=" . urlencode($row['időpont']) . "'>Take exam</a></td>";
+        }
         echo "</tr>";
     }
 

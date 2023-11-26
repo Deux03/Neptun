@@ -25,7 +25,7 @@ if (isset($_GET['id']) && isset($_COOKIE["username"])) {
     }
     ?>
     <form method="post">
-        <p class="question">Are you sure that you want to apply for this exam? (kód: <?php echo htmlspecialchars($kod); ?>)?</p>
+        <p class="question">Are you sure that you want to apply for this exam? (kód: <?php echo htmlspecialchars($kod . " at: " . $idopont); ?>)?</p>
         <input class="button" type="submit" name="confirmApplyExam" value="Yes">
         <button type="button" onclick="window.location.href='./exams.php'">Cancel</button>
     </form>
