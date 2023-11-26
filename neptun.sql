@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Nov 26. 20:22
+-- Létrehozás ideje: 2023. Nov 26. 21:26
 -- Kiszolgáló verziója: 10.4.27-MariaDB
 -- PHP verzió: 8.2.0
 
@@ -293,13 +293,17 @@ CREATE TABLE `terem` (
 INSERT INTO `terem` (`cím`, `emelet`, `ajtó`, `név`, `férőhely`, `jelleg`, `kód`, `időpont`) VALUES
 ('Szeged 6725 Algyői út 12.', 1, 20, 'Multifunkciós Nagyterem', 350, 'vizsga', 'IB370E-1', '2023-11-18 23:46:00'),
 ('Szeged 6725 Arady tér 6b', 3, 125, 'Nagy Magdolna terem', 520, 'Előadó', 'IB153e-1', '2023-11-18 23:46:00'),
+('Szeged 6725 Árpád utca 23.', 1, 10, 'Nagy Előadő II.', 550, 'előadás', 'IB714E-1', '2023-11-26 08:00:00'),
+('Szeged 6725 Árpád utca 23.', 1, 13, 'Nagy Előadő III.', 550, 'előadás', 'MBNXK311E-1', '2023-11-29 21:25:29'),
 ('Szeged 6725 Árpád utca 23.', 4, 123, 'Nagy Gyakorlati Terem', 600, 'vizsga', 'IB153I-7', '2023-10-18 23:46:00'),
 ('Szeged 6725 Árpád utca 23.', 4, 123, 'Nagy Gyakorlati Terem', 600, 'vizsga', 'IB153I-7', '2023-11-18 23:46:00'),
 ('Szeged 6725 Árpád utca 23.', 4, 123, 'Nagy Gyakorlati Terem', 600, 'gyakorlat', 'IB153I-7', '2023-11-29 15:05:48'),
 ('Szeged 6725 Bajnai út 23.', 4, 460, 'Nagy Számítógép Labor', 400, 'Laboratórium', 'IB204L-4', '2023-11-18 23:30:22'),
 ('Szeged 6725 Csaba utca 23.', 3, 303, '303', 350, 'vizsga', 'IB370E-1', '2023-11-18 23:46:35'),
 ('Szeged 6725 Csaba utca 23.', 3, 303, '303', 350, 'vizsga', 'IB370E-1', '2023-11-29 15:25:00'),
-('Szeged 6725 Közélet utca 23.', 4, 123, 'Nagy Terem', 600, 'előadás', 'IBK203G-10', '2023-12-14 07:33:00');
+('Szeged 6725 István krt. 38.', 1, 22, 'Kanizsa István', 100, 'gyakorlat', 'MBNXK112G-10', '2023-11-30 21:17:08'),
+('Szeged 6725 Kis utca 5b', 3, 310, 'Kis Kálmán terem', 50, 'gyakorlat', 'IB370G-7', '2024-11-28 22:00:00'),
+('Szeged 6725 Közélet utca 23.', 4, 123, 'Nagy Terem', 550, 'előadás', 'IBK203G-10', '2023-12-14 07:33:00');
 
 -- --------------------------------------------------------
 
@@ -342,13 +346,15 @@ ALTER TABLE `felhasználó`
 -- A tábla indexei `hallgatja`
 --
 ALTER TABLE `hallgatja`
-  ADD PRIMARY KEY (`felhasználó név`,`kód`);
+  ADD PRIMARY KEY (`felhasználó név`,`kód`),
+  ADD KEY `hallgatja_ibfk_2` (`kód`);
 
 --
 -- A tábla indexei `jelentkezik`
 --
 ALTER TABLE `jelentkezik`
-  ADD PRIMARY KEY (`felhasználó név`,`kód`,`időpont`);
+  ADD PRIMARY KEY (`felhasználó név`,`kód`,`időpont`),
+  ADD KEY `jelentkezik_ibfk_2` (`kód`);
 
 --
 -- A tábla indexei `kurzus`
@@ -361,7 +367,8 @@ ALTER TABLE `kurzus`
 -- A tábla indexei `oktat`
 --
 ALTER TABLE `oktat`
-  ADD PRIMARY KEY (`felhasználó név`,`kód`);
+  ADD PRIMARY KEY (`felhasználó név`,`kód`),
+  ADD KEY `oktat_ibfk_2` (`kód`);
 
 --
 -- A tábla indexei `szemeszter`
@@ -373,7 +380,8 @@ ALTER TABLE `szemeszter`
 -- A tábla indexei `terem`
 --
 ALTER TABLE `terem`
-  ADD PRIMARY KEY (`cím`,`emelet`,`ajtó`,`kód`,`időpont`);
+  ADD PRIMARY KEY (`cím`,`emelet`,`ajtó`,`kód`,`időpont`),
+  ADD KEY `terem_ibfk_1` (`kód`);
 
 --
 -- A tábla indexei `vizsga`
