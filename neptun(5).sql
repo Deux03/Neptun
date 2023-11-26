@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Nov 25. 20:44
+-- Létrehozás ideje: 2023. Nov 26. 17:37
 -- Kiszolgáló verziója: 10.4.27-MariaDB
 -- PHP verzió: 8.2.0
 
@@ -57,6 +57,7 @@ INSERT INTO `felhasználó` (`felhasználó név`, `státusz`, `szak`, `szület�
 ('daniel', 1, 'history', '1975-04-04', 'South Paulburgh', '$2b$12$LWYNNN1mG1YQNiJ9XdKLo.SdrUIWpPcYsP6uhZM163B..W40d1R72', 'Dr. Allen', 0),
 ('diak', 1, 'info', '2002-11-30', 'Szeged', '$2y$10$qYqlYMD9iHmFalfkPQ3g8u4ukjS5/jyQFHby4bxCU0Q3e0vXjtPNC', 'jani jani jani', 0),
 ('diak2', 0, 'info', '2023-10-05', 'Szeged', '$2y$10$eUzaN6eUattVanFn12g.SeWtkZZrfoUCSacm4oep1d8.8RW1d4M2C', 'jani jani jani', 0),
+('diak3', 1, 'info', '2023-11-15', 'Szeged', '$2y$10$g.w.z6tjSsQ0JMc19ngQxe88NicGwu5IPxsarX6/4rlW3R3GLmleG', 'jani jani jani2222', 0),
 ('eszti', 1, 'psychologist', '2002-03-27', 'Budapest', '$2y$10$JHnGhmDZL.ouNA3gugOz7OrDZKD4IOMbQ3KWYgRoVtgVOP0Tyeqca', 'Palkó Eszter', 1),
 ('gcolem', 1, 'engineering', '1999-08-22', 'Andreafurt', '$2b$12$MYZq./gVAR3m/kBSKO8RlOXkPQArW48cfLaxp6msknHsJn.u7mkiu', 'John Rogers', 1),
 ('gonzal', 1, 'science', '2005-09-11', 'East Kellybury', '$2b$12$EXlAYyocKf3vTKHkxMjwJ.spObwD89vsdhI7IkGWecB1srNstxCIK', 'Anthony Hernandez', 1),
@@ -111,6 +112,7 @@ INSERT INTO `hallgatja` (`felhasználó név`, `kód`) VALUES
 ('diak', 'MBNXK311E-1'),
 ('diak2', 'IB153e-1'),
 ('diak2', 'IB153I-7'),
+('diak3', 'IB153I-7'),
 ('szti', 'IB153e-1'),
 ('szti', 'IB153I-7'),
 ('szti', 'IB501e-1'),
@@ -134,17 +136,17 @@ CREATE TABLE `jelentkezik` (
 --
 
 INSERT INTO `jelentkezik` (`felhasználó név`, `kód`, `időpont`) VALUES
-('diak', 'IB302g-1', '2023-12-02 01:48:00'),
-('diak', 'IB370E-1', '2023-11-18 23:46:35'),
 ('diak', 'IB370E-1', '2023-11-22 15:24:00'),
 ('diak', 'IB370E-1', '2023-11-29 15:25:00'),
-('diak', 'IB370E-1', '2024-11-15 15:26:00'),
-('diak', 'IBK203G-10', '2023-12-01 07:33:00'),
+('diak', 'IBK203G-10', '2023-12-14 07:33:00'),
+('diak', 'MBNXK112G-10', '2023-11-09 20:07:00'),
 ('diak', 'MBNXK114E-1', '2023-11-16 03:03:00'),
 ('diak2', 'IB302e-1', '2023-12-02 01:48:00'),
 ('diak2', 'IB370E-1', '2023-11-18 23:46:35'),
 ('diak2', 'IBK203G-10', '2023-12-01 07:33:00'),
 ('diak2', 'MBNXK114E-1', '2023-11-16 03:03:00'),
+('diak3', 'IB370E-1', '2023-11-18 23:46:00'),
+('diak3', 'IBK203G-10', '2023-12-14 07:33:00'),
 ('szti', 'IB370E-1', '2023-11-22 15:24:00');
 
 -- --------------------------------------------------------
@@ -175,7 +177,7 @@ INSERT INTO `kurzus` (`kód`, `férőhely`, `heti óraszám`, `jelleg`, `cím`) 
 ('IB370E-1', 540, 2, 'Előadás', 'Szkriptnyelvek Előadás'),
 ('IB370G-7', 18, 1, 'Gyakorlat', 'Szkriptnyelvek gyakorlat'),
 ('IB402E-1', 600, 2, 'Előadás', 'Operációs rendszerek Előadás'),
-('IB402g-7', 40, 1, 'Gyakorlat', 'Operációs rendszerek gyakorlat'),
+('IB402g-7', 40, 2, 'Gyakorlat', 'Operációs rendszerek gyakorlat'),
 ('IB501e-1', 520, 2, 'Előadás', 'Adatbázisok'),
 ('IB501g-12', 30, 1, 'Gyakorlat', 'Adatbázisok gyakorlat'),
 ('IB714E-1', 650, 2, 'Előadás', 'Web tervezés Előadás'),
@@ -204,6 +206,22 @@ CREATE TABLE `oktat` (
   `felhasználó név` varchar(6) NOT NULL,
   `kód` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `oktat`
+--
+
+INSERT INTO `oktat` (`felhasználó név`, `kód`) VALUES
+('ad2', 'IB153e-1'),
+('ad3', 'IB153e-1'),
+('admin', 'IB204L-4'),
+('admin', 'IB402g-7'),
+('angela', 'IB501g-12'),
+('angela', 'IBK203E-1'),
+('CBER3F', 'IBK304E-1'),
+('crobin', 'IB501e-1'),
+('xherre', 'MBNXK114G-7'),
+('xherre', 'MBNXK311E-1');
 
 -- --------------------------------------------------------
 
@@ -263,8 +281,8 @@ CREATE TABLE `terem` (
   `név` varchar(30) NOT NULL,
   `férőhely` int(3) NOT NULL,
   `jelleg` varchar(20) NOT NULL,
-  `kód` varchar(20) DEFAULT NULL,
-  `időpont` datetime DEFAULT NULL
+  `kód` varchar(20) NOT NULL,
+  `időpont` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -273,27 +291,14 @@ CREATE TABLE `terem` (
 
 INSERT INTO `terem` (`cím`, `emelet`, `ajtó`, `név`, `férőhely`, `jelleg`, `kód`, `időpont`) VALUES
 ('Szeged 6725 Algyői út 12.', 1, 20, 'Multifunkciós Nagyterem', 350, 'vizsga', 'IB370E-1', '2023-11-18 23:46:00'),
-('Szeged 6725 Arady tér 6b', 3, 125, 'Nagy Magdolna terem', 520, 'Előadó', NULL, NULL),
-('Szeged 6725 Árpád utca 23.', 4, 450, 'Nagy Gyakorlati Terem', 300, 'Gyakorlat', NULL, NULL),
-('Szeged 6725 Bajnai út 23.', 4, 460, 'Nagy Számítógép Labor', 400, 'Laboratórium', NULL, NULL),
-('Szeged 6725 Béke tér 3.', 3, 301, 'Multifunkciós Terem', 200, 'Előadó', NULL, NULL),
-('Szeged 6725 Deák Ferenc tér 12.', 2, 110, 'Kis Előadó', 50, 'Előadó', NULL, NULL),
-('Szeged 6725 Dugonics tér 67.', 0, 5, 'Nagy Előadó', 999, 'vizsga', 'IB402E-1', '2023-11-18 18:13:43'),
-('Szeged 6725 Fehér híd 5.', 0, 5, 'Egyetemi Könyvtár', 400, 'Kutatóterem', NULL, NULL),
-('Szeged 6725 Fekete Sas utca 2.', 4, 420, 'Számítógép Labor', 25, 'Laboratórium', NULL, NULL),
-('Szeged 6725 Gutenberg tér 15.', 3, 308, 'Nagy Konferenciaterem', 280, 'Konferencia', NULL, NULL),
-('Szeged 6725 Gutenberg tér 8.', 1, 10, 'Kicsi Tanterem', 30, 'Előadó', NULL, NULL),
-('Szeged 6725 Hargita utca 4.', 4, 430, 'Kémia Labor', 20, 'Laboratórium', NULL, NULL),
-('Szeged 6725 Hattyas sor 12.', 1, 18, 'Koncertterem', 350, 'Művészeti', NULL, NULL),
-('Szeged 6725 Kálvária sugárút 25.', 0, 3, 'Gyakorlati Terem', 40, 'Gyakorlat', NULL, NULL),
-('Szeged 6725 Kárász utca 15.', 2, 205, 'Díszterem', 150, 'Konferencia', NULL, NULL),
-('Szeged 6725 Kossuth Lajos tér 18.', 0, 2, 'Modern Tanterem', 40, 'Előadó', NULL, NULL),
-('Szeged 6725 Madách tér 7.', 3, 325, 'Zenei Terem', 60, 'Művészeti', NULL, NULL),
-('Szeged 6725 Rákóczi tér 10.', 2, 210, 'Közösségi Terem', 300, 'Előadó', NULL, NULL),
-('Szeged 6725 Rókus tér 10.', 2, 215, 'Modern Előadó', 230, 'Előadó', NULL, NULL),
-('Szeged 6725 Roosevelt tér 6.', 1, 15, 'Projektoros Terem', 80, 'Előadó', NULL, NULL),
-('Szeged 6725 Szent-Györgyi Albert utca 2.', 3, 305, 'Nagy Laboratórium', 250, 'Laboratórium', NULL, NULL),
-('Szeged 6725 Tisza Lajos körút 5.', 0, 8, 'Színházi Terem', 280, 'Művészeti', NULL, NULL);
+('Szeged 6725 Arady tér 6b', 3, 125, 'Nagy Magdolna terem', 520, 'Előadó', 'IB153e-1', '2023-11-18 23:46:00'),
+('Szeged 6725 Árpád utca 23.', 4, 123, 'Nagy Gyakorlati Terem', 600, 'vizsga', 'IB153I-7', '2023-10-18 23:46:00'),
+('Szeged 6725 Árpád utca 23.', 4, 123, 'Nagy Gyakorlati Terem', 600, 'vizsga', 'IB153I-7', '2023-11-18 23:46:00'),
+('Szeged 6725 Árpád utca 23.', 4, 123, 'Nagy Gyakorlati Terem', 600, 'gyakorlat', 'IB153I-7', '2023-11-29 15:05:48'),
+('Szeged 6725 Bajnai út 23.', 4, 460, 'Nagy Számítógép Labor', 400, 'Laboratórium', 'IB204L-4', '2023-11-18 23:30:22'),
+('Szeged 6725 Csaba utca 23.', 3, 303, '303', 350, 'vizsga', 'IB370E-1', '2023-11-18 23:46:35'),
+('Szeged 6725 Csaba utca 23.', 3, 303, '303', 350, 'vizsga', 'IB370E-1', '2023-11-29 15:25:00'),
+('Szeged 6725 Közélet utca 23.', 4, 123, 'Nagy Terem', 600, 'előadás', 'IBK203G-10', '2023-12-14 07:33:00');
 
 -- --------------------------------------------------------
 
@@ -313,7 +318,7 @@ CREATE TABLE `vizsga` (
 --
 
 INSERT INTO `vizsga` (`kód`, `időpont`, `férőhely`, `jelleg`) VALUES
-('IB370E-1', '2023-11-18 23:46:00', 305, '4'),
+('IB370E-1', '2023-11-18 23:46:00', 305, 'online'),
 ('IB370E-1', '2023-11-18 23:46:35', 50, 'Írásbeli'),
 ('IB370E-1', '2023-11-22 15:24:00', 600, 'online'),
 ('IB370E-1', '2023-11-29 15:25:00', 300, 'írásbeli'),
@@ -336,17 +341,13 @@ ALTER TABLE `felhasználó`
 -- A tábla indexei `hallgatja`
 --
 ALTER TABLE `hallgatja`
-  ADD PRIMARY KEY (`felhasználó név`,`kód`),
-  ADD UNIQUE KEY `felhasználó név` (`felhasználó név`,`kód`),
-  ADD KEY `hallgatja_ibfk_2` (`kód`);
+  ADD PRIMARY KEY (`felhasználó név`,`kód`);
 
 --
 -- A tábla indexei `jelentkezik`
 --
 ALTER TABLE `jelentkezik`
-  ADD PRIMARY KEY (`felhasználó név`,`kód`,`időpont`),
-  ADD UNIQUE KEY `felhasználó név` (`felhasználó név`,`időpont`),
-  ADD KEY `jelentkezik_ibfk_2` (`kód`);
+  ADD PRIMARY KEY (`felhasználó név`,`kód`,`időpont`);
 
 --
 -- A tábla indexei `kurzus`
@@ -359,31 +360,25 @@ ALTER TABLE `kurzus`
 -- A tábla indexei `oktat`
 --
 ALTER TABLE `oktat`
-  ADD PRIMARY KEY (`felhasználó név`,`kód`),
-  ADD UNIQUE KEY `felhasználó név` (`felhasználó név`,`kód`),
-  ADD KEY `oktat_ibfk_2` (`kód`);
+  ADD PRIMARY KEY (`felhasználó név`,`kód`);
 
 --
 -- A tábla indexei `szemeszter`
 --
 ALTER TABLE `szemeszter`
-  ADD PRIMARY KEY (`kód`,`szemeszter`),
-  ADD UNIQUE KEY `kód` (`kód`,`szemeszter`);
+  ADD PRIMARY KEY (`kód`,`szemeszter`);
 
 --
 -- A tábla indexei `terem`
 --
 ALTER TABLE `terem`
-  ADD PRIMARY KEY (`cím`,`emelet`,`ajtó`),
-  ADD UNIQUE KEY `időpont` (`időpont`),
-  ADD KEY `terem_ibfk_1` (`kód`);
+  ADD PRIMARY KEY (`cím`,`emelet`,`ajtó`,`kód`,`időpont`);
 
 --
 -- A tábla indexei `vizsga`
 --
 ALTER TABLE `vizsga`
-  ADD PRIMARY KEY (`kód`,`időpont`),
-  ADD UNIQUE KEY `kód` (`kód`,`időpont`);
+  ADD PRIMARY KEY (`kód`,`időpont`);
 
 --
 -- Megkötések a kiírt táblákhoz

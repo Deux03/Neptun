@@ -18,7 +18,7 @@ if (isset($_GET['id']) && isset($_COOKIE["username"])) {
                 $errorMessage = "Couldn't take the exam: " . $stm->error;
             }
         } catch (mysqli_sql_exception $e) {
-            $errorMessage = "MySQL Error: " . $e->getMessage();
+            $errorMessage = "You've already appliey for this exam:" . $e->getMessage();
         }
 
         $stm->close();

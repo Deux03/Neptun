@@ -24,10 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ./neptun_index.php");
                 exit();
             } else {
-                echo "Invalid username or password.";
+                $errorMessage= "Invalid username or password.";
             }
         } else {
-            echo "Invalid username or password.";
+            $errorMessage= "Invalid username or password.";
         }
         $stm->close();
     }

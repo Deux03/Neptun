@@ -13,12 +13,12 @@ include_once("./include/functionalities/login_handler.php");
 </head>
 
 <body>
-<?php include_once("./navbar.php");
+    <?php include_once("./navbar.php");
     if (isset($_SESSION['registrationSuccess']) && $_SESSION['registrationSuccess']) {
         echo '<script>alert("Your registration was sucessful! You can log in now.");</script>';
         unset($_SESSION['registrationSuccess']);
     }
-?>
+    ?>
     <div class="content">
         <h1>Log in to use Neptun</h1>
         <div id="login">
@@ -39,6 +39,10 @@ include_once("./include/functionalities/login_handler.php");
                     <button type="submit" class="button">Register</button>
                 </form>
             </div>
+            <?php
+            if (!empty($errorMessage)) {
+                echo "<p class='error-message'>$errorMessage</p>";
+            } ?>
         </div>
     </div>
 </body>

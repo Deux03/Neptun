@@ -21,6 +21,7 @@ $isStudent = isset($_COOKIE["isStudent"]) ? $_COOKIE["isStudent"] : null;
                 } else if($isStudent == "Teacher"){
                     echo '<li><a href="./show_applied_courses.php">Applied courses</a></li>';
                     echo '<li><a href="./show_biggest_classroom_with_exams.php">Big classrom with exams/courses</a></li>';
+                    echo '<li><a href="./teachers_classes_to_be_held.php">Weekly hours</a></li>';
                 }
             }
             ?>

@@ -17,7 +17,7 @@ if (!(isset($_COOKIE["LoggedIn"]) && $_COOKIE["LoggedIn"] == true)) {
 <body>
     <?php include_once("./navbar.php"); ?>
     <div class="content">
-        <h1>Edit the exam</h1>
+        <h1>Weakly hours for teachers</h1>
         <?php
         if (!empty($errorMessage)) {
             echo "<p class='error-message'>$errorMessage</p>";

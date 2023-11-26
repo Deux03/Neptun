@@ -6,7 +6,7 @@ $stmt = $conn->prepare("SELECT t.cím AS terem_cim, t.emelet, t.ajtó, t.név, t
                                 k.kód AS kurzus_kod, k.`heti óraszám`AS heti_oraszám, k.jelleg AS kurzus_jelleg, k.cím AS kurzus_cim
                         FROM terem t
                         LEFT JOIN kurzus k ON t.kód = k.kód
-                    WHERE t.férőhely = (SELECT MAX(férőhely) FROM terem WHERE kód IS NOT NULL)
+                        WHERE t.férőhely = (SELECT MAX(férőhely) FROM terem WHERE kód IS NOT NULL)
                         ORDER BY $orderBy $order;");
 $stmt->execute();
 $result = $stmt->get_result();
